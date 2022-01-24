@@ -1,26 +1,28 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="flex flex-col justify-center h-screen place-items-center">
+    <h1 class="text-3xl font-bold text-center border-2 rounded-xl p-3.5 m-2.5 text-gray-600">
+      MyTime
+    </h1>
+
+    <div class="flex flex-row">
+      <timeline/>
+
+      <tasks/>
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Timeline from './components/Timeline.vue'
+import Tasks from './components/Tasks.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    Timeline,
+    Tasks
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped>
 </style>
