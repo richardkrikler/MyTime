@@ -5,9 +5,10 @@
 </template>
 
 <script>
-import TimelineHour from './TimelineHour.vue'
+import TimelineHour from './TimelineHour'
 export default {
   name: 'Timeline',
+
   components: {
     TimelineHour
   },

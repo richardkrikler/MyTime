@@ -7,11 +7,13 @@ export default createStore({
     },
     mutations: {
         loadTasks() {
-            console.log('ll')
-
             /**
              * Notion: Schule: Aufgaben -> 'Today' == true & Sorted by 'Fällig am' & Status != 'Fertig'
              */
+
+            fetch('https://jsonplaceholder.typicode.com/todos/1')
+                .then(response => response.json())
+                .then(data => console.log(data))
 
             const notion = new Client({
                 auth: process.env.VUE_APP_NOTION_KEY

@@ -13,8 +13,9 @@
 </template>
 
 <script>
-import Timeline from './components/Timeline.vue'
-import Tasks from './components/Tasks.vue'
+import Timeline from './components/Timeline'
+import Tasks from './components/Tasks'
+
 export default {
   name: 'App',
   components: {

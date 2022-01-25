@@ -10,6 +10,7 @@
 <script>
 export default {
   name: 'TimelineHour',
+
   props: {
     hour: Number
   }
