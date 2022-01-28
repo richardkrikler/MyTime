@@ -1,12 +1,18 @@
 <template>
   <div>
-    Task
+    {{ task.properties['Beschreibung'].title[0].text.content }}
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Task'
+  name: 'Task',
+
+  props: {
+    task: {
+      type: Object
+    }
+  }
 }
 </script>
 

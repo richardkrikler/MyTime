@@ -1,11 +1,12 @@
 <template>
   <div class="border-2 rounded-xl m-2.5 p-2.5">
-    <task v-for="(t, i) in 5" :key="i" />
+    <task v-for="(t, i) in $store.getters.tasks" :task="t" :key="i"/>
   </div>
 </template>
 
 <script>
 import Task from './Task'
+
 export default {
   name: 'Tasks',
 
@@ -14,7 +15,7 @@ export default {
   },
 
   created() {
-    this.$store.commit('loadTasks')
+    this.$store.dispatch('loadTasks')
   }
 }
 </script>
