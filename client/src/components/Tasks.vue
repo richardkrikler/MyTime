@@ -1,6 +1,6 @@
 <template>
-  <div class="border-2 rounded-xl m-2.5 p-2.5">
-    <task v-for="(t, i) in $store.getters.tasks" :task="t" :key="i"/>
+  <div class="border-2 rounded-xl m-2.5 p-1.5" @drop="drop" @dragover="dragOver" @dragleave="dragLeave" @dragenter="dragEnter">
+    <task v-for="t in $store.getters.tasks" :task="t" :key="t.id"/>
   </div>
 </template>
 
@@ -16,6 +16,26 @@ export default {
 
   created() {
     this.$store.dispatch('loadTasks')
+  },
+
+  methods: {
+    drop(e) {
+      e.preventDefault()
+      const id = e.dataTransfer.getData('text')
+      const draggable = document.getElementById(id)
+      e.target.appendChild(draggable)
+      draggable.classList.remove('invisible')
+    },
+
+    dragOver(e) {
+      e.preventDefault()
+    },
+
+    dragLeave() {},
+
+    dragEnter(e) {
+      e.preventDefault()
+    }
   }
 }
 </script>
