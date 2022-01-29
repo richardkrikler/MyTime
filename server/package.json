@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Richard Krikler",
+  "repository": "https://github.com/richardkrikler/MyTime",
   "license": "ISC",
   "dependencies": {
     "@notionhq/client": "^0.4.12",

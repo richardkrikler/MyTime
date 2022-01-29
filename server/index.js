@@ -1,11 +1,13 @@
 const {Client} = require('@notionhq/client')
 require('dotenv').config()
 
-const app = require('express')()
+const express = require('express')
+const app = express()
 const PORT = 8090
+app.use(express.json())
 
-const cors = require('cors');
-app.use(cors());
+const cors = require('cors')
+app.use(cors())
 
 
 app.listen(
@@ -45,5 +47,28 @@ app.get('/tasks', (req, res) => {
                 direction: 'ascending',
             },],
         }).then(notionData => res.status(200).send(notionData))
+    })()
+})
+
+app.patch('/task/:id', (req, res) => {
+    const {id} = req.params
+    const {when} = req.body
+    const notion = new Client({auth: process.env.NOTION_KEY});
+
+    // const dateObj = null;
+    // const dateObj = {
+    //     start: '2022-01-30',
+    //     end: null
+    // };
+
+    const response = (async () => {
+        await notion.pages.update({
+            page_id: id,
+            properties: {
+                'When': {
+                    date: when
+                },
+            },
+        }).then(() => res.status(200).send())
     })()
 })
