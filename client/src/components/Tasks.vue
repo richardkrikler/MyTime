@@ -25,6 +25,7 @@ export default {
       const draggable = document.getElementById(id)
       e.target.appendChild(draggable)
       draggable.classList.remove('invisible')
+      draggable.classList.remove('container')
     },
 
     dragOver(e) {

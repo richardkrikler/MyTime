@@ -1,5 +1,5 @@
 <template>
-  <div class="border-2 m-2 px-2.5 py-1.5 rounded-md bg-white task container" draggable="true" @dragstart="dragStart" @dragend="dragEnd"
+  <div class="border-2 my-2 mx-2 px-2.5 py-1.5 rounded-md bg-white task" draggable="true" @dragstart="dragStart" @dragend="dragEnd"
        :id="task.id">
 
     <p class="text-gray-500 font-bold" v-if="task.properties['Topic'].select !== null">

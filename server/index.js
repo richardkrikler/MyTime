@@ -8,11 +8,15 @@ const cors = require('cors');
 app.use(cors());
 
 
+app.listen(
+    PORT,
+    () => console.log(`it's alive on http://localhost:${PORT}`)
+)
 
 /**
- * Notion: Schule: Aufgaben -> 'Today' == true & Sorted by 'Fällig am' & Status != 'Fertig'
+ * Tasks -> 'Today' == true & Sorted by 'Fällig am' & Status != 'Fertig'
  */
-app.get('/notion', (req, res) => {
+app.get('/tasks', (req, res) => {
     const notion = new Client({auth: process.env.NOTION_KEY});
 
     (async () => {
@@ -43,9 +47,3 @@ app.get('/notion', (req, res) => {
         }).then(notionData => res.status(200).send(notionData))
     })()
 })
-
-app.listen(
-    PORT,
-    () => console.log(`it's alive on http://localhost:${PORT}`)
-)
-

@@ -7,7 +7,6 @@
 
       <div class="flex flex-row">
         <timeline class="container"/>
-
         <tasks class="container"/>
       </div>
     </div>
