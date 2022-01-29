@@ -9,7 +9,7 @@
   "keywords": [],
   "author": "Richard Krikler",
   "repository": "https://github.com/richardkrikler/MyTime",
-  "license": "ISC",
+  "license": "BSD-2",
   "dependencies": {
     "@notionhq/client": "^0.4.12",
     "cors": "^2.8.5",

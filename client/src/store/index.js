@@ -11,7 +11,7 @@ export default createStore({
     },
     actions: {
         async loadTasks(state) {
-            await fetch('http://localhost:8090/notion')
+            await fetch('http://localhost:8090/tasks')
                 .then(res => res.json())
                 .then(data => state.commit('updateTasks', Object.values(data.results)))
         }
