@@ -1,5 +1,5 @@
 <template>
-  <div class="border-2 rounded-xl m-2.5 p-1.5" @drop="drop" @dragover="dragOver" @dragleave="dragLeave" @dragenter="dragEnter">
+  <div class="border-2 dark:border-gray-700 rounded-xl m-2.5 p-1.5" @drop="drop" @dragover="dragOver" @dragleave="dragLeave" @dragenter="dragEnter">
     <task v-for="t in $store.getters.tasks" :task="t" :key="t.id"/>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
-  <div class="border-t-2 pl-2.5 flex flex-row" @drop="drop" @dragover="dragOver" @dragleave="dragLeave" @dragenter="dragEnter">
-    <span class="text-gray-500 py-1 pr-2 w-6 text-right">
+  <div class="border-t-2 dark:border-gray-700 pl-2.5 flex flex-row" @drop="drop" @dragover="dragOver" @dragleave="dragLeave" @dragenter="dragEnter">
+    <span class="text-gray-500 dark:text-gray-300 py-1 pr-2 w-6 text-right">
       {{ hour }}
     </span>
   </div>
@@ -19,6 +19,7 @@ export default {
       e.preventDefault()
       const id = e.dataTransfer.getData('text')
       const draggable = document.getElementById(id)
+
       e.target.appendChild(draggable)
       draggable.classList.remove('invisible')
       draggable.classList.add('container')
