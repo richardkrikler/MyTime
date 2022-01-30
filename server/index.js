@@ -1,6 +1,3 @@
-const {Client} = require('@notionhq/client')
-require('dotenv').config()
-
 const express = require('express')
 const app = express()
 const PORT = 8090
@@ -8,6 +5,21 @@ app.use(express.json())
 
 const cors = require('cors')
 app.use(cors())
+
+const Joi = require('joi')
+
+const {Client} = require('@notionhq/client')
+require('dotenv').config()
+
+
+const whenSchema = {
+    body: Joi.object({
+        date: Joi.object({
+            start: Joi.date().iso(),
+            end: Joi.date().iso()
+        }).or().allow(null)
+    })
+}
 
 
 app.listen(
