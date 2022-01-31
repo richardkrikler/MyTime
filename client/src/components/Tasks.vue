@@ -26,6 +26,14 @@ export default {
       e.target.appendChild(draggable)
       draggable.classList.remove('invisible')
       draggable.classList.remove('container')
+
+
+      this.$store.dispatch('updateTaskTime', {
+        id: draggable.id,
+        when: {
+          when: null
+        }
+      })
     },
 
     dragOver(e) {
