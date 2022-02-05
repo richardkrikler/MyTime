@@ -64,7 +64,7 @@ app.get('/tasks', (req, res) => {
 
 app.patch('/task/:id', (req, res) => {
     const {id} = req.params
-    const {when} = req.body
+    const {dateTime} = req.body
     const notion = new Client({auth: process.env.NOTION_KEY});
 
     // const dateObj = null;
@@ -78,7 +78,7 @@ app.patch('/task/:id', (req, res) => {
             page_id: id,
             properties: {
                 'When': {
-                    date: when
+                    date: dateTime
                 },
             },
         }).then(() => res.status(200).send())

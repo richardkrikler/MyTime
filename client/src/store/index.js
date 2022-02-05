@@ -2,7 +2,30 @@ import {createStore} from 'vuex'
 
 export default createStore({
     state: {
-        tasks: Array
+        tasks: []
+    },
+
+    getters: {
+        tasks(state) {
+            return state.tasks
+        },
+
+        tasksAtHour: state => hour => {
+            return state.tasks.filter(t => {
+                if (t.properties['When'].date !== null) {
+                    const date = new Date(t.properties['When'].date.start)
+                    const offsetMs = date.getTimezoneOffset() * 60 * 1000
+                    const msLocal = date.getTime() + offsetMs
+                    const dateLocal = new Date(msLocal)
+
+                    return dateLocal.getHours() === 0 ? 24 === hour : dateLocal.getHours() === hour
+                }
+            })
+        },
+
+        unassignedTasks(state) {
+            return state.tasks.filter(t => t.properties['When'].date === null)
+        },
     },
 
     mutations: {
@@ -24,14 +47,8 @@ export default createStore({
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(param.when)
+                body: JSON.stringify(param.data)
             })
-        }
-    },
-
-    getters: {
-        tasks(state) {
-            return state.tasks
         }
     }
 })
