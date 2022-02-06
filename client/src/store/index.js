@@ -26,11 +26,23 @@ export default createStore({
         unassignedTasks(state) {
             return state.tasks.filter(t => t.properties['When'].date === null)
         },
+
+        taskPosFromId: state => id => {
+            return state.tasks.findIndex(t => t.id === id)
+        },
+
+        isDateDifferent: state => (taskPos, date) => {
+            return JSON.stringify(date) !== JSON.stringify(state.tasks[taskPos].properties['When'].date)
+        }
     },
 
     mutations: {
         updateTasks(state, tasks) {
             state.tasks = tasks
+        },
+
+        updateTaskDate(state, {taskPos, date}) {
+            state.tasks[taskPos].properties['When'].date = date
         },
     },
 
@@ -41,14 +53,19 @@ export default createStore({
                 .then(data => state.commit('updateTasks', Object.values(data.results)))
         },
 
-        async updateTaskTime(state, param) {
-            await fetch('http://localhost:8090/task/' + param.id, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(param.data)
-            })
+        async updateTaskDate({getters, commit}, {id, date}) {
+            const taskPos = getters.taskPosFromId(id)
+            if (taskPos < 0 || getters.isDateDifferent(taskPos, date)) {
+                commit('updateTaskDate', {taskPos, date})
+                await fetch('http://localhost:8090/task/' + id, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({notionDate: date})
+                })
+            }
+
         }
     }
 })

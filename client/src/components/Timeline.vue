@@ -12,10 +12,6 @@ export default {
 
   components: {
     TimelineHour
-  },
-
-  beforeCreate() {
-    this.$store.state.timeline = [... new Array(24)].map(() => [])
   }
 }
 </script>

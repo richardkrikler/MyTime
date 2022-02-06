@@ -1,5 +1,6 @@
 <template>
-  <div class="border-2 dark:border-gray-700 rounded-xl m-2.5 p-1.5" @drop="drop" @dragover="dragOver" @dragleave="dragLeave" @dragenter="dragEnter">
+  <div class="border-2 dark:border-gray-700 rounded-xl m-2.5 p-1.5" @drop="drop" @dragover="dragOver"
+       @dragleave="dragLeave" @dragenter="dragEnter">
     <task v-for="t in $store.getters.unassignedTasks" :task="t" :key="t.id"/>
   </div>
 </template>
@@ -21,18 +22,12 @@ export default {
   methods: {
     drop(e) {
       e.preventDefault()
+
       const id = e.dataTransfer.getData('text')
-      const draggable = document.getElementById(id)
-      e.target.appendChild(draggable)
-      draggable.classList.remove('invisible')
-      draggable.classList.remove('container')
 
-
-      this.$store.dispatch('updateTaskTime', {
-        id: draggable.id,
-        data: {
-          dateTime: null
-        }
+      this.$store.dispatch('updateTaskDate', {
+        id: id,
+        date: null
       })
     },
 
@@ -40,7 +35,8 @@ export default {
       e.preventDefault()
     },
 
-    dragLeave() {},
+    dragLeave() {
+    },
 
     dragEnter(e) {
       e.preventDefault()
