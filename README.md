@@ -1,5 +1,17 @@
 # mytime
 
+## Docker
+### Start Containers
+```
+docker compose up -d
+```
+
+### Build Images
+```
+docker compose build
+```
+
+
 ## Project setup
 
 ### Client (Frontend)

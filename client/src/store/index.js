@@ -1,5 +1,7 @@
 import {createStore} from 'vuex'
 
+const API_URL = 'http://localhost:1031'
+
 export default createStore({
     state: {
         tasks: []
@@ -48,7 +50,7 @@ export default createStore({
 
     actions: {
         async loadTasks(state) {
-            await fetch('http://localhost:8090/tasks')
+            await fetch(API_URL + '/tasks')
                 .then(res => res.json())
                 .then(data => state.commit('updateTasks', Object.values(data.results)))
         },
@@ -57,7 +59,7 @@ export default createStore({
             const taskPos = getters.taskPosFromId(id)
             if (taskPos < 0 || getters.isDateDifferent(taskPos, date)) {
                 commit('updateTaskDate', {taskPos, date})
-                await fetch('http://localhost:8090/task/' + id, {
+                await fetch(API_URL + '/task/' + id, {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json'

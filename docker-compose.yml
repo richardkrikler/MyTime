@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  server:
+    build: 'server'
+    restart: always
+    ports:
+      - '1031:1031'
+    networks:
+      - mytime-app
+  client:
+    build: 'client'
+    ports:
+      - '1030:80'
+    networks:
+      - mytime-app
+    depends_on:
+      - server
+networks:
+  mytime-app:
+    driver: bridge
