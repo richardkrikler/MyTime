@@ -1,6 +1,6 @@
 import {createStore} from 'vuex'
 
-const API_URL = 'http://localhost:1031'
+const API_URL = location.protocol + '//' + location.hostname + ':1031'
 
 export default createStore({
     state: {
@@ -67,7 +67,6 @@ export default createStore({
                     body: JSON.stringify({notionDate: date})
                 })
             }
-
         }
     }
 })
