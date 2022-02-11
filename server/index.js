@@ -12,14 +12,13 @@ const {Client} = require('@notionhq/client')
 require('dotenv').config()
 
 
-const whenSchema = {
-    body: Joi.object({
-        date: Joi.object({
-            start: Joi.date().iso(),
-            end: Joi.date().iso()
-        }).or().allow(null)
+const notionDateSchema =
+    Joi.object({
+        notionDate: Joi.object({
+            start: Joi.date().iso().required(),
+            end: Joi.date().iso().required()
+        }).or().allow(null).required()
     })
-}
 
 
 app.listen(
@@ -67,20 +66,22 @@ app.patch('/task/:id', (req, res) => {
     const {notionDate} = req.body
     const notion = new Client({auth: process.env.NOTION_KEY});
 
-    // const dateObj = null;
-    // const dateObj = {
-    //     start: '2022-01-30',
-    //     end: null
-    // };
+    const result = notionDateSchema.validate(req.body)
+    const {value, error} = result
+    const valid = error == null
 
-    const response = (async () => {
-        await notion.pages.update({
-            page_id: id,
-            properties: {
-                'When': {
-                    date: notionDate
+    if (valid) {
+        (async () => {
+            await notion.pages.update({
+                page_id: id,
+                properties: {
+                    'When': {
+                        date: notionDate
+                    },
                 },
-            },
-        }).then(() => res.status(200).send())
-    })()
+            }).then(() => res.status(200).send('Successfully updated Notion-Date!'))
+        })()
+    } else {
+        res.status(422).send(error)
+    }
 })
