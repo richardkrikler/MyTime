@@ -11,13 +11,16 @@ const Joi = require('joi')
 const {Client} = require('@notionhq/client')
 require('dotenv').config()
 
+const dateTimePattern = new RegExp('^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(.\\d{3})?([+]\\d{2}:\\d{2})?$')
 
 const notionDateSchema =
     Joi.object({
-        notionDate: Joi.object({
-            start: Joi.date().iso().required(),
-            end: Joi.date().iso().required()
-        }).or().allow(null).required()
+        notionDate: Joi.alternatives(Joi.object({
+                start: Joi.string().regex(dateTimePattern).required(),
+                end: Joi.string().regex(dateTimePattern).required(),
+                time_zone: Joi.allow(null).optional()
+            }),
+            Joi.allow(null).required())
     })
 
 
@@ -27,7 +30,7 @@ app.listen(
 )
 
 /**
- * Tasks -> 'Today' == true & Sorted by 'Fällig am' & Status != 'Fertig'
+ * Tasks -> 'Today' == true & Sorted by 'Due' & State != 'Fertig'
  */
 app.get('/tasks', (req, res) => {
     const notion = new Client({auth: process.env.NOTION_KEY});
@@ -45,16 +48,16 @@ app.get('/tasks', (req, res) => {
                     }
                 },
                     {
-                        property: 'Status',
+                        property: 'State',
                         select: {
-                            does_not_equal: 'Fertig'
+                            does_not_equal: 'Done'
                         }
                     }
                 ]
             },
 
             sorts: [{
-                property: 'Fällig am',
+                property: 'Due',
                 direction: 'ascending',
             },],
         }).then(notionData => res.status(200).send(notionData))

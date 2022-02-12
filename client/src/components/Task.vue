@@ -7,7 +7,7 @@
     </p>
 
     <p class="text-gray-500 dark:text-gray-300">
-      {{ task.properties['Beschreibung'].title[0].text.content }}
+      {{ task.properties['Description'].title[0].text.content }}
     </p>
   </div>
 </template>
