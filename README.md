@@ -14,6 +14,7 @@ NOTION_KEY=secret_xxx
 NOTION_DATABASE_ID=database_id
 ```
 
+
 ## Docker
 ### Start Containers
 ```
@@ -25,6 +26,10 @@ docker compose up -d
 docker compose build
 ```
 
+### Default Ports
+- Client/UI: 1030  
+- Server/API: 1031
+- 
 
 ## Project setup
 
