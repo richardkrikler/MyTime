@@ -1,4 +1,7 @@
-# mytime
+# MyTime
+
+![MyTime - Demo](https://richardkrikler.com/images/MyTime/MyTime%20-%20Demo.png)
+![MyTime - Notion](https://richardkrikler.com/images/MyTime/MyTime%20-%20Notion.png)
 
 ## Docker
 ### Start Containers
