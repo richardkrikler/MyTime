@@ -3,6 +3,16 @@
 ![MyTime - Demo](https://richardkrikler.com/images/MyTime/MyTime%20-%20Demo.png)
 ![MyTime - Notion](https://richardkrikler.com/images/MyTime/MyTime%20-%20Notion.png)
 
+## Connect to Notion
+Create ```.env``` File in ```server/```
+
+Add Notion Integration Token (```NOTION_KEY```, [Notion-Integrations](https://www.notion.so/my-integrations))  
+Add Database-ID (```NOTION_DATABASE_ID```, Open Database as Page -> ID in URL)
+```
+NOTION_KEY=secret_xxx
+NOTION_DATABASE_ID=database_id
+```
+
 ## Docker
 ### Start Containers
 ```
