@@ -1,8 +1,8 @@
 <h1 align="center">MyTime</h1>
 <h3 align="center">Custom Vertical Timeline for Notion</h3>
 
-![MyTime - Demo](https://richardkrikler.com/images/MyTime/MyTime%20-%20Demo.png)
-![MyTime - Notion](https://richardkrikler.com/images/MyTime/MyTime%20-%20Notion.png)
+![MyTime - Demo](https://richardkrikler.at/images/MyTime/MyTime%20-%20Demo.png)
+![MyTime - Notion](https://richardkrikler.at/images/MyTime/MyTime%20-%20Notion.png)
 
 ## Connect to Notion
 Create ```.env``` File in ```server/```
