@@ -29,7 +29,6 @@ docker compose build
 ### Default Ports
 - Client/UI: 1030  
 - Server/API: 1031
-- 
 
 ## Project setup
 
