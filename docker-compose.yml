@@ -4,13 +4,13 @@ services:
     build: 'server'
     restart: always
     ports:
-      - '1031:1031'
+      - '127.0.0.1:1031:1031'
     networks:
       - mytime-app
   client:
     build: 'client'
     ports:
-      - '1030:80'
+      - '127.0.0.1:1030:80'
     networks:
       - mytime-app
     depends_on:
